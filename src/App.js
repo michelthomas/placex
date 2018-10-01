@@ -10,12 +10,12 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDbbbhPTyFFH5AU4XgHiUo_vPYNVtGl6Vk",
-    authDomain: "placex3mla.firebaseapp.com",
-    databaseURL: "https://placex3mla.firebaseio.com",
-    projectId: "placex3mla",
-    storageBucket: "placex3mla.appspot.com",
-    messagingSenderId: "844288218995"
+    apiKey: "AIzaSyAg7DexkaC0Fn_xWtK-nhvdk1U5IH3g9YY",
+    authDomain: "pweb-map.firebaseapp.com",
+    databaseURL: "https://pweb-map.firebaseio.com",
+    projectId: "pweb-map",
+    storageBucket: "pweb-map.appspot.com",
+    messagingSenderId: "440694380279"
 };
 firebase.initializeApp(config);
 
