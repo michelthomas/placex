@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { Button } from 'reactstrap';
 
 export default class Login extends Component {
 
@@ -54,7 +55,39 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+        <div class="container">
+          <div class="login-form">
+            <div class="main-div">
+                <div class="panel">
+                 <h2>PlaceEx</h2>
+                 <p>Por favor insira seu email e senha</p>
+               </div>
+               <div id="Login">
+                  <div class="form-group">
+                      <input type="text" name="email"
+                          value={this.state.email} onChange={this.atualizarEmail} placeholder="Email" />
+                  </div>
+
+                  <div class="form-group">
+                      <input type="password" name="senha"
+                          value={this.state.senha} onChange={this.atualizarSenha} placeholder="Senha" />
+                  </div>
+
+                  <div class="btn-group">
+                    <Button onClick={this.cadastrarUsuario}>Cadastrar</Button>
+                      &emsp;
+                    <Button onClick={this.loginUsuario} color="dark">Login</Button>
+                  </div>
+                </div>                                                            
+              </div>
+            </div>
+          </div>
+
+
+
+
+      /*
+      <div class="container">
         <h1>Login!</h1>
         <div>
             <label>
@@ -70,13 +103,12 @@ export default class Login extends Component {
                     value={this.state.senha} onChange={this.atualizarSenha}/>
             </label>
         </div>
-        <div>
-          <a onClick={this.cadastrarUsuario}>Cadastrar</a>
+        <div class="btn-group">
+          <Button onClick={this.cadastrarUsuario}>Cadastrar</Button>
+            &emsp;
+          <Button onClick={this.loginUsuario} color="dark">Login</Button>
         </div>
-        <div>
-          <a onClick={this.loginUsuario}>Login</a>
-        </div>
-      </div>
+      </div>*/
     );
 
   }
