@@ -9,11 +9,13 @@ export default class Map extends Component {
         super();
         this.state = {
             places: [],
+            categorias: [],
         }
     }
 
     componentDidMount() {
-        firebase.firestore().collection('Places').get().then((querySnapshot) => {
+        const db = firebase.firestore();
+        db.collection('Places').get().then((querySnapshot) => {
             const places = [];
             querySnapshot.forEach((doc) => {
                     // doc.data() is never undefined for query doc snapshots
@@ -40,6 +42,30 @@ export default class Map extends Component {
             console.error(error);
         });
 
+        db.collection('Categorias').get().then((querySnapshot) => {
+            const categorias = [];
+            querySnapshot.forEach((doc) => {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id, " => ", doc.data());
+
+                    const {nome} = doc.data();
+
+                    categorias.push({
+                        key: doc.id,
+                        nome: nome,
+                    });
+
+
+                }
+            );
+
+            this.setState({
+                categorias: categorias,
+            });
+        }).catch((error) => {
+            console.error(error);
+        });
+
     }
 
     static defaultProps = {
@@ -47,6 +73,9 @@ export default class Map extends Component {
         zoom: 15,
     };
 
+    _queryCoord = () => {
+        console.log('ok');
+    };
 
     render() {
         const style = {
@@ -55,6 +84,18 @@ export default class Map extends Component {
         };
         return (
             <div className='google-map' style={style}>
+                {this.state.categorias.map((cat) => {
+                        return (
+                            <div>
+                                <label key={cat.key}>
+                                    <input type='checkbox' name={cat.nome} id={cat.key} onChange={this._queryCoord}/>
+                                    {cat.nome}
+                                </label>
+                            </div>
+
+                        )
+                    }
+                )}
                 <GoogleMapReact
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
