@@ -84,10 +84,13 @@ export default class Map extends Component {
         //   position: 'absolute',
         // };
         return (
+          <div className='box'>
           <div>
+          <div className='edition '>
           {this.state.categorias.map((cat) => {
                   return (
-                      <div className='edition '>
+
+                      <div>
                           <label key={cat.key}>
                               <input type='checkbox' name={cat.nome} id={cat.key} onChange={this._queryCoord}/>
                               {cat.nome}
@@ -97,6 +100,8 @@ export default class Map extends Component {
                   )
               }
           )}
+            </div>
+          </div>
             <div className='google-map'>
                 <GoogleMapReact
                     defaultCenter={this.props.center}
@@ -119,7 +124,7 @@ export default class Map extends Component {
 
                 </GoogleMapReact>
             </div>
-            </div>
+        </div>
         );
     }
 }

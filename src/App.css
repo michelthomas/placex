@@ -87,11 +87,20 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 
 .edition{
 color: white;
-position:;
+position: absolute; right: 50px;
+text-align: right;
 
 }
-.google-map {
+.google-map{
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 50vw;
   height: 50vh;
-  position: absolute;
+
+}
+
+.box{
+  border: 10px;
 }
