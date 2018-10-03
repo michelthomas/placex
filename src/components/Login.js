@@ -73,6 +73,8 @@ export default class Login extends Component {
                           value={this.state.senha} onChange={this.atualizarSenha} placeholder="Senha" />
                   </div>
 
+                  <br/>
+
                   <div class="btn-group">
                     <Button onClick={this.cadastrarUsuario}>Cadastrar</Button>
                       &emsp;

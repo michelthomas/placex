@@ -41,12 +41,15 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
   height: 50px;
   line-height: 50px;
 }
+
 .main-div {
   background: #ffffff none repeat scroll 0 0;
   border-radius: 2px;, 
-  margin: 10px auto 30px;
   max-width: 38%;
   padding: 50px 70px 70px 71px;
+  position: absolute;
+  left: 35%;
+  top: 25%;
 }
 
 .login-form .form-group {

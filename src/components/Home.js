@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
+import { Button } from 'reactstrap';
 
 export default class Home extends Component {
     constructor(props) {
@@ -50,20 +51,33 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Home!</h1>
-                <div>
-                    <Link to="/list">List Page</Link>
+            <div class="container">
+              <div class="login-form">
+                <div class="main-div">
+                    <div class="panel">
+                        <h2>Home</h2>
+                    </div>
+                
+                    <div>
+                        <div class="btn-group">
+                            <Link to="/list">List Page</Link>
+                                &emsp;
+                            <Link to="/images">Images Page</Link>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <div class="btn-group">
+                            <Button onClick={this.addPlace} disabled>Cadastrar local</Button>
+                            
+                            <Button onClick={this.listPlaces}>Listar Locais</Button>
+                            
+                            <Button color="dark" onClick={this.logout}>Sair</Button>
+                        </div>                    
+                    </div>                                                         
+                  </div>
                 </div>
-                <div>
-                    <Link to="/images">Images Page</Link>
-                </div>
-                <br/>
-                <a onClick={this.addPlace}>Cadastrar Local</a>
-                <br/>
-                <a onClick={this.listPlaces}>Listar Locais</a>
-                <br/>
-                <a onClick={this.logout}>Logout</a>
             </div>
         );
     }
