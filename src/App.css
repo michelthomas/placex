@@ -44,7 +44,7 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 
 .main-div {
   background: #ffffff none repeat scroll 0 0;
-  border-radius: 2px;, 
+  border-radius: 2px;,
   max-width: 38%;
   padding: 50px 70px 70px 71px;
   position: absolute;
@@ -84,3 +84,14 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+.edition{
+color: white;
+position:;
+
+}
+.google-map {
+  width: 50vw;
+  height: 50vh;
+  position: absolute;
+}

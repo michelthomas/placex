@@ -78,24 +78,26 @@ export default class Map extends Component {
     };
 
     render() {
-        const style = {
-            width: '100vw',
-            height: '100vh'
-        };
+        // const style = {
+        //   width: '50vw',
+        //   height: '50vh',
+        //   position: 'absolute',
+        // };
         return (
-            <div className='google-map' style={style}>
-                {this.state.categorias.map((cat) => {
-                        return (
-                            <div>
-                                <label key={cat.key}>
-                                    <input type='checkbox' name={cat.nome} id={cat.key} onChange={this._queryCoord}/>
-                                    {cat.nome}
-                                </label>
-                            </div>
+          <div>
+          {this.state.categorias.map((cat) => {
+                  return (
+                      <div className='edition '>
+                          <label key={cat.key}>
+                              <input type='checkbox' name={cat.nome} id={cat.key} onChange={this._queryCoord}/>
+                              {cat.nome}
+                          </label>
+                      </div>
 
-                        )
-                    }
-                )}
+                  )
+              }
+          )}
+            <div className='google-map'>
                 <GoogleMapReact
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
@@ -116,6 +118,7 @@ export default class Map extends Component {
                     })}
 
                 </GoogleMapReact>
+            </div>
             </div>
         );
     }
