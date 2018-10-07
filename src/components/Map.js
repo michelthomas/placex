@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
-import Image from 'react';
+//import Image from 'react';
 import marker from '../assets/baseline_place_black_18dp.png';
 import firebase from 'firebase';
 
@@ -10,6 +10,7 @@ export default class Map extends Component {
         this.state = {
             places: [],
             categorias: [],
+
         }
     }
 
@@ -53,6 +54,7 @@ export default class Map extends Component {
                     categorias.push({
                         key: doc.id,
                         nome: nome,
+                        check: true
                     });
 
 
@@ -73,8 +75,8 @@ export default class Map extends Component {
         zoom: 15,
     };
 
-    _queryCoord = () => {
-        console.log('ok');
+    _altCheck = () => {
+        console.log(this.state.categorias.key);
     };
 
     render() {
@@ -87,12 +89,12 @@ export default class Map extends Component {
           <div className='box'>
           <div>
           <div className='edition '>
-          {this.state.categorias.map((cat) => {
+          {this.state.categorias.map((cat, i) => {
                   return (
 
                       <div>
                           <label key={cat.key}>
-                              <input type='checkbox' name={cat.nome} id={cat.key} onChange={this._queryCoord}/>
+                              <input type='checkbox' defaultChecked={cat.check} name={cat.nome} id={i} onChange={this._queryCoord}/>
                               {cat.nome}
                           </label>
                       </div>
@@ -102,6 +104,7 @@ export default class Map extends Component {
           )}
             </div>
           </div>
+              {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
                 <GoogleMapReact
                     defaultCenter={this.props.center}
@@ -110,16 +113,24 @@ export default class Map extends Component {
                         {key: 'AIzaSyDWc-bIxXW2k_6OEWmHw3Ybf4hHkNqCiBQ'}
                     }>
 
-                    {this.state.places.map((place) => {
-                        return (
-                            <AnyReactComponent
-                                lat={place.coords.lat}
-                                lng={place.coords.long}
-                                text={'Kreyser Avrora'}
-                                onChildClick={place.descricao}
-                                hover={place.desc}
-                            />
-                        )
+                    {this.state.places.map((place, i) => {
+                        this.state.categorias.map((cat) => {
+                            console.log(place.categoria + ' ... ' + cat.key + ' ... ' + cat.check);
+                            if (cat.check) {
+                                console.log("passou");
+                                return (
+
+                                    <AnyReactComponent
+                                        lat={place.coords.lat}
+                                        lng={place.coords.long}
+                                        onChildClick={place.descricao}
+                                        hover={place.desc}
+                                        title={place.nome}
+                                    />
+                                )
+                            }
+                        })
+
                     })}
 
                 </GoogleMapReact>
