@@ -5,25 +5,27 @@ import { Button } from 'reactstrap';
 export default class List extends Component {
   render() {
     return (
-      <div class="container">
-        <div class="login-form">
-          <div class="main-div">
-              <div class="panel">
-                  <h2>Home</h2>
-              </div>
-          
-              <div>
-                  <div class="btn-group">
-                      <Link to="/">Home Page</Link>
+      <body id="LoginForm">
+        <div class="container">
+          <div class="login-form">
+            <div class="main-div">
+                <div class="home">
+                    <div class="panel">
+                        <h2>List</h2>
+                    </div>
+
+                    <br/>
+
+                    <div class="btn-group">
+                      <Link to="/home">Home Page</Link>
                           &emsp;
                       <Link to="/images">Images Page</Link>
-                  </div>
-                  
-                  <br/>                   
-              </div>                                                         
+                    </div>
+                </div>
             </div>
           </div>
-      </div>
+        </div>
+      </body>
     );
   }
 }

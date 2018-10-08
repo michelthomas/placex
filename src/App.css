@@ -1,34 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-
-body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-481285.jpg"); background-repeat:no-repeat;}
+body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-481285.jpg"); background-repeat:no-repeat; background-position:center; background-size:auto; padding:10px;}
 
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
@@ -41,15 +11,12 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
   height: 50px;
   line-height: 50px;
 }
-
 .main-div {
   background: #ffffff none repeat scroll 0 0;
-  border-radius: 2px;,
+  border-radius: 15px;
+  margin: 10px auto 30px;
   max-width: 38%;
   padding: 50px 70px 70px 71px;
-  position: absolute;
-  left: 35%;
-  top: 25%;
 }
 
 .login-form .form-group {
@@ -61,15 +28,30 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
   font-size: 14px;
   text-decoration: underline;
 }
+
+/*Botões da tela de login*/
 .login-form  .btn.btn-primary {
   background: #f0ad4e none repeat scroll 0 0;
   border-color: #f0ad4e;
   color: #ffffff;
   font-size: 14px;
-  width: 100%;
+  width: 46%;
   height: 50px;
   line-height: 50px;
   padding: 0;
+}
+
+/*Botões da tela home*/
+.home .btn.btn-primary {
+  background: #f0ad4e none repeat scroll 0 0;
+  border-color: #f0ad4e;
+  color: #ffffff;
+  font-size: 13px;
+  width: 50%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  border-radius: 10px;
 }
 .forgot {
   text-align: left; margin-bottom:30px;
@@ -84,23 +66,3 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
-
-.edition{
-color: white;
-position: absolute; right: 50px;
-text-align: right;
-
-}
-.google-map{
-
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50vw;
-  height: 50vh;
-
-}
-
-.box{
-  border: 10px;
-}

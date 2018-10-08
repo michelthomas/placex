@@ -51,34 +51,38 @@ export default class Home extends Component {
 
     render() {
         return (
+          <body id="LoginForm">
             <div class="container">
               <div class="login-form">
                 <div class="main-div">
-                    <div class="panel">
-                        <h2>Home</h2>
-                    </div>
-                
-                    <div>
+                    <div class="home">
+                        <div class="panel">
+                            <h2>Home</h2>
+                        </div>
+
+                        <br/>
+
                         <div class="btn-group">
                             <Link to="/list">List Page</Link>
                                 &emsp;
                             <Link to="/images">Images Page</Link>
                         </div>
 
-                        <br/>
-                        <br/>
+                      <br/>
+                      <br/>
 
                         <div class="btn-group">
-                            <Button onClick={this.addPlace} disabled>Cadastrar local</Button>
-                            
-                            <Button onClick={this.listPlaces}>Listar Locais</Button>
-                            
-                            <Button color="dark" onClick={this.logout}>Sair</Button>
-                        </div>                    
-                    </div>                                                         
-                  </div>
+                            <button onClick={this.addPlace} type="submit" class="btn btn-primary" disabled>Cadastrar local</button>
+                                &ensp;
+                            <button onClick={this.listPlaces} type="submit" class="btn btn-primary">Listar Locais</button>
+                                &ensp;
+                            <button onClick={this.logout} type="submit" class="btn btn-primary">Sair</button>
+                        </div>
+                    </div>
                 </div>
+              </div>
             </div>
+          </body>
         );
     }
 }

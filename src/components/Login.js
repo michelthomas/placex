@@ -55,35 +55,35 @@ export default class Login extends Component {
 
   render() {
     return (
+      <body id="LoginForm">
         <div class="container">
           <div class="login-form">
             <div class="main-div">
-                <div class="panel">
-                 <h2>PlaceEx</h2>
-                 <p>Por favor insira seu email e senha</p>
-               </div>
-               <div id="Login">
-                  <div class="form-group">
-                      <input type="text" name="email"
-                          value={this.state.email} onChange={this.atualizarEmail} placeholder="Email" />
-                  </div>
 
-                  <div class="form-group">
-                      <input type="password" name="senha"
-                          value={this.state.senha} onChange={this.atualizarSenha} placeholder="Senha" />
-                  </div>
-
-                  <br/>
-
-                  <div class="btn-group">
-                    <Button onClick={this.cadastrarUsuario}>Cadastrar</Button>
-                      &emsp;
-                    <Button onClick={this.loginUsuario} color="dark">Login</Button>
-                  </div>
-                </div>                                                            
+              <div class="panel">
+               <h2>PlacEx</h2>
+               <p>Por favor insira seu email e senha</p>
               </div>
+
+              <div class="form-group">
+                  <input type="text" name="email" class="form-control"
+                            value={this.state.email} onChange={this.atualizarEmail} id="inputEmail" placeholder="Email" />
+              </div>
+
+              <div class="form-group">
+                  <input type="password" name="senha" class="form-control"
+                            value={this.state.senha} onChange={this.atualizarSenha} id="inputPassword" placeholder="Senha" />
+              </div>
+
+              <br/>
+
+              <button onClick={this.cadastrarUsuario} type="submit" class="btn btn-primary">Cadastrar</button>
+                &emsp;
+              <button onClick={this.loginUsuario} type="submit" class="btn btn-primary">Login</button>
             </div>
           </div>
+        </div>
+      </body>
 
 
 
