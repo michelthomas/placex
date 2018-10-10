@@ -14,6 +14,7 @@ export default class Map extends Component {
             places: [],
             categorias: [],
             categoryName:'',
+            checkSelecionados:[]
 
         }
         this.upgradeCategory = this.upgradeCategory.bind(this);
@@ -26,14 +27,14 @@ export default class Map extends Component {
     addCategory() {
         const category = {
             tipo: this.state.categoryName,
-        };  
+        };
 
         const db = firebase.firestore();
         const userRef = db.collection('Category').add(category)
             .then(sucesso => {
                 console.log('Dados inseridos: ' + sucesso);
             });
-    }    
+    }
 
     componentDidMount() {
         const db = firebase.firestore();
@@ -64,17 +65,16 @@ export default class Map extends Component {
             console.error(error);
         });
 
-        db.collection('Categorias').get().then((querySnapshot) => {
+        db.collection('Category').get().then((querySnapshot) => {
             const categorias = [];
             querySnapshot.forEach((doc) => {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.id, " => ", doc.data());
 
-                    const {nome} = doc.data();
+                    const {tipo} = doc.data();
 
                     categorias.push({
-                        key: doc.id,
-                        nome: nome,
+                        tipo: tipo,
                         check: true
                     });
 
@@ -96,8 +96,9 @@ export default class Map extends Component {
         zoom: 15,
     };
 
-    _altCheck = () => {
-        console.log(this.state.categorias.key);
+    _handleInputChange = event => {
+        const id = event.target.id;
+        console.log(id);
     };
 
     render() {
@@ -119,22 +120,23 @@ export default class Map extends Component {
             &ensp;
             <div className='btn-group'>
               {this.state.categorias.map((cat, i) => {
-                      return (
-                          <div>
-                              <label key={cat.key}>
-                                  <input type='checkbox' defaultChecked={cat.check} name={cat.nome} id={i} onChange={this._queryCoord}/>
-                                    &ensp;
-                                  {cat.nome} /
-                              </label>
-                              &emsp;
-                          </div>
+                  return (
 
-                      )
-                  }
-              )}
+                      <div>
+                          <label>
+                              <input type='checkbox' defaultChecked={true} name={cat.tipo} id={i} onChange={this._handleInputChange}/>
+                              &ensp;
+                              {cat.tipo}
+                          </label>
+                          &emsp;
+                      </div>
+
+                  )
+              }
+          )}
             </div>
           </div>
-          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button> 
+          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button>
 
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
@@ -145,11 +147,20 @@ export default class Map extends Component {
                         {key: 'AIzaSyDWc-bIxXW2k_6OEWmHw3Ybf4hHkNqCiBQ'}
                     }>
 
-                    {this.state.places.map((place, i) => {
-                        this.state.categorias.map((cat) => {
-                            console.log(place.categoria + ' ... ' + cat.key + ' ... ' + cat.check);
-                            if (cat.check) {
-                                console.log("passou");
+                    {
+
+                        this.state.places.map((place, i) => {
+                            let passar;
+
+                        this.state.categorias.map((categoria, j) => {
+                            console.log(place.categoria + ' ... ' + categoria.tipo + '...' + categoria.check);
+                            if ((place.categoria == categoria.tipo) && categoria.check == true) {
+                                passar = 1;
+                                console.log('pass')
+                            }
+                        });
+
+                        if (passar == 1) {
                                 return (
 
                                     <AnyReactComponent
@@ -160,8 +171,10 @@ export default class Map extends Component {
                                         title={place.nome}
                                     />
                                 )
-                            }
-                        })
+                    } else {
+                            console.log('n passou')
+                        }
+                        passar = 0;
 
                     })}
 
