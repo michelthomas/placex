@@ -13,14 +13,20 @@ export default class Map extends Component {
         this.state = {
             places: [],
             categorias: [],
+            categoryName:'',
 
         }
+        this.upgradeCategory = this.upgradeCategory.bind(this);
+    }
+
+    upgradeCategory(event){
+        this.setState({categoryName: event.target.value});
     }
 
     addCategory() {
         const category = {
-            tipo: 'Parque'
-        };
+            tipo: this.state.categoryName,
+        };  
 
         const db = firebase.firestore();
         const userRef = db.collection('Category').add(category)
@@ -102,24 +108,34 @@ export default class Map extends Component {
         // };
         return (
           <div className='box'>
-          <div>
           <div className='edition '>
-          {this.state.categorias.map((cat, i) => {
-                  return (
+            <h5 class="card-header">PlacEx Map</h5>
+            <br/>
 
-                      <div>
-                          <label key={cat.key}>
-                              <input type='checkbox' defaultChecked={cat.check} name={cat.nome} id={i} onChange={this._queryCoord}/>
-                              {cat.nome}
-                          </label>
-                      </div>
+            <input type="text" onChange={this.upgradeCategory} class="categoryName form-control" value={this.state.categoryName} placeholder="Category Name"  title="Insert the name of category" />
 
-                  )
-              }
-          )}
+            <br/>
+            <br/>
+            &ensp;
+            <div className='btn-group'>
+              {this.state.categorias.map((cat, i) => {
+                      return (
+                          <div>
+                              <label key={cat.key}>
+                                  <input type='checkbox' defaultChecked={cat.check} name={cat.nome} id={i} onChange={this._queryCoord}/>
+                                    &ensp;
+                                  {cat.nome} /
+                              </label>
+                              &emsp;
+                          </div>
+
+                      )
+                  }
+              )}
             </div>
           </div>
-          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button>
+          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button> 
+
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
                 <GoogleMapReact

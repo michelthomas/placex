@@ -29,7 +29,7 @@
 
 
 
-body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-481285.jpg"); background-repeat:no-repeat; background-position:center; background-size:auto; padding:10px;}
+body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-481285.jpg"); background-repeat:no-repeat; background-position:center;}
 
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
@@ -98,22 +98,25 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
 
+.btn-group .card-header{
+  width: 100vh;
+  height: 10vh;
+}
 
 .edition{
-
-  color: white;
-  position: absolute; right: 50px;
-  text-align: right;
+  background: #ffffff none repeat scroll 0 0;
+  width: 50%;
+  height: 100%;
+  position: absolute; 
+  right: 0px;
+  margin-left: auto;
 }
 
 .google-map{
-
   display: block;
-  margin-left: auto;
   margin-right: auto;
-  width: 50vw;
-  height: 50vh;
-
+  width: 50%;
+  height: 100vh;
 }
 
 .box{
@@ -121,7 +124,7 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 }
 
 .btnFixo{
-  font-size: 40px;
+  font-size: 30px;
   width: 5%;
   height: 10%;
   border-radius: 50%;
