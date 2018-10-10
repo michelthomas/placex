@@ -4,6 +4,9 @@ import GoogleMapReact from 'google-map-react';
 import marker from '../assets/baseline_place_black_18dp.png';
 import firebase from 'firebase';
 
+//import bootstrap
+import { Button } from 'reactstrap';
+
 export default class Map extends Component {
     constructor() {
         super();
@@ -13,6 +16,18 @@ export default class Map extends Component {
 
         }
     }
+
+    addCategory() {
+        const category = {
+            tipo: 'Parque'
+        };
+
+        const db = firebase.firestore();
+        const userRef = db.collection('Category').add(category)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }    
 
     componentDidMount() {
         const db = firebase.firestore();
@@ -104,6 +119,7 @@ export default class Map extends Component {
           )}
             </div>
           </div>
+          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button>
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
                 <GoogleMapReact

@@ -12,6 +12,8 @@ export default class List extends Component {
                 <div class="home">
                     <div class="panel">
                         <h2>List</h2>
+                            &ensp;
+                        <Link to="/map">Map Page</Link>                        
                     </div>
 
                     <br/>
@@ -20,6 +22,8 @@ export default class List extends Component {
                       <Link to="/home">Home Page</Link>
                           &emsp;
                       <Link to="/images">Images Page</Link>
+                          &ensp;
+                      <Link to="/map">Map Page</Link>                      
                     </div>
                 </div>
             </div>

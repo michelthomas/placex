@@ -11,15 +11,17 @@ export default class Images extends Component {
           <div class="main-div">
               <div class="home">
                   <div class="panel">
-                      <h2>Images</h2>
+                      <h2>Images</h2>                    
                   </div>
 
                   <br/>
 
                   <div class="btn-group">
                     <Link to="/home">Home Page</Link>
-                        &emsp;
+                        &ensp;
                     <Link to="/list">List Page</Link>
+                        &ensp;
+                    <Link to="/map">Map Page</Link>                    
                   </div>
               </div>
           </div>

@@ -64,8 +64,10 @@ export default class Home extends Component {
 
                         <div class="btn-group">
                             <Link to="/list">List Page</Link>
-                                &emsp;
+                                &ensp;
                             <Link to="/images">Images Page</Link>
+                                &ensp;
+                            <Link to="/map">Map Page</Link>
                         </div>
 
                       <br/>
