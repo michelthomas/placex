@@ -124,13 +124,14 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 }
 
 .btnFixo{
-  font-size: 30px;
-  width: 5%;
-  height: 10%;
-  border-radius: 50%;
+  font-size: 50px;
   position: fixed;
   float: bottom;
   bottom: 10%;
   right: 2%;
   z-index: 100;
+}
+
+a.btnFixo:link{
+  text-decoration:none; 
 }

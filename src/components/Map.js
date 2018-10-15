@@ -13,27 +13,8 @@ export default class Map extends Component {
         this.state = {
             places: [],
             categorias: [],
-            categoryName:'',
-            checkSelecionados:[]
-
+            checkSelecionados:[],
         }
-        this.upgradeCategory = this.upgradeCategory.bind(this);
-    }
-
-    upgradeCategory(event){
-        this.setState({categoryName: event.target.value});
-    }
-
-    addCategory() {
-        const category = {
-            tipo: this.state.categoryName,
-        };
-
-        const db = firebase.firestore();
-        const userRef = db.collection('Category').add(category)
-            .then(sucesso => {
-                console.log('Dados inseridos: ' + sucesso);
-            });
     }
 
     componentDidMount() {
@@ -113,22 +94,16 @@ export default class Map extends Component {
             <h5 class="card-header">PlacEx Map</h5>
             <br/>
 
-            <input type="text" onChange={this.upgradeCategory} class="categoryName form-control" value={this.state.categoryName} placeholder="Category Name"  title="Insert the name of category" />
-
-            <br/>
-            <br/>
             &ensp;
-            <div className='btn-group'>
+            <div>
               {this.state.categorias.map((cat, i) => {
                   return (
 
                       <div>
                           <label>
                               <input type='checkbox' defaultChecked={true} name={cat.tipo} id={i} onChange={this._handleInputChange}/>
-                              &ensp;
                               {cat.tipo}
                           </label>
-                          &emsp;
                       </div>
 
                   )
@@ -136,7 +111,10 @@ export default class Map extends Component {
           )}
             </div>
           </div>
-          <button onClick={this.addCategory} type="submit" class="btn-danger btnFixo">!</button>
+
+          <a type="text" href="/category" class="btnFixo">+</a>
+          <a type="text" href="/places" class="btnFixo">+</a>
+       
 
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
