@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
-import { Button } from 'reactstrap';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 export default class Home extends Component {
     constructor(props) {
@@ -51,40 +57,18 @@ export default class Home extends Component {
 
     render() {
         return (
-          <body id="LoginForm">
-            <div class="container">
-              <div class="login-form">
-                <div class="main-div">
-                    <div class="home">
-                        <div class="panel">
-                            <h2>Home</h2>
-                        </div>
-
-                        <br/>
-
-                        <div class="btn-group">
-                            <Link to="/list">List Page</Link>
-                                &ensp;
-                            <Link to="/images">Images Page</Link>
-                                &ensp;
-                            <Link to="/map">Map Page</Link>
-                        </div>
-
-                      <br/>
-                      <br/>
-
-                        <div class="btn-group">
-                            <button onClick={this.addPlace} type="submit" class="btn btn-info" disabled>Register a place</button>
-                                &ensp;
-                            <button onClick={this.listPlaces} type="submit" class="btn btn-info">List places</button>
-                                &ensp;
-                            <button onClick={this.logout} type="submit" class="btn btn-info">Logout</button>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </body>
+          <div>
+          <AppBar position="static" color="inherit">
+          <IconButton color="inherit" aria-label="Menu">
+          <MenuIcon />
+          </IconButton>
+          <Toolbar>
+              <Button color="inherit" onClick={this.addPlace} type="submit">Register a place</Button>
+              <Button color="inherit" onClick={this.listPlaces} type="submit">List places</Button>
+              <Button color="inherit" onClick={this.logout} type="submit">Logout</Button>
+          </Toolbar>
+          </AppBar>
+          </div>
         );
     }
 }

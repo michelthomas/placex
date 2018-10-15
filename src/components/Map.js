@@ -7,6 +7,9 @@ import firebase from 'firebase';
 //import bootstrap
 import { Button } from 'reactstrap';
 
+//import navbar home
+import Home from './Home';
+
 export default class Map extends Component {
     constructor() {
         super();
@@ -118,7 +121,7 @@ export default class Map extends Component {
             <label class="labelFixoPlace">P</label>
                 <a type="text" href="/places" class="btnFixoPlace" title="Register a new place">+</a>
           </div>
-       
+
 
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
