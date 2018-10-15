@@ -77,9 +77,9 @@ export default class Login extends Component {
 
               <br/>
 
-              <button onClick={this.cadastrarUsuario} type="submit" class="btn btn-primary">Cadastrar</button>
+              <button onClick={this.cadastrarUsuario} type="submit" class="btn btn-info">Cadastrar</button>
                 &emsp;
-              <button onClick={this.loginUsuario} type="submit" class="btn btn-primary">Login</button>
+              <button onClick={this.loginUsuario} type="submit" class="btn btn-info">Login</button>
             </div>
           </div>
         </div>

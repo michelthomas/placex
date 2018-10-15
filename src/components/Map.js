@@ -17,6 +17,7 @@ export default class Map extends Component {
         }
     }
 
+
     componentDidMount() {
         const db = firebase.firestore();
         db.collection('Places').get().then((querySnapshot) => {
@@ -94,12 +95,11 @@ export default class Map extends Component {
             <h5 class="card-header">PlacEx Map</h5>
             <br/>
 
-            &ensp;
             <div>
               {this.state.categorias.map((cat, i) => {
                   return (
-
                       <div>
+                        &ensp;
                           <label>
                               <input type='checkbox' defaultChecked={true} name={cat.tipo} id={i} onChange={this._handleInputChange}/>
                               {cat.tipo}
@@ -112,8 +112,12 @@ export default class Map extends Component {
             </div>
           </div>
 
-          <a type="text" href="/category" class="btnFixo">+</a>
-          <a type="text" href="/places" class="btnFixo">+</a>
+          <div class="btn-group">
+            <label class="labelFixoCategory">C</label>
+                <a type="text" href="/category" class="btnFixoCategory" title="Register a new category">+</a>
+            <label class="labelFixoPlace">P</label>
+                <a type="text" href="/places" class="btnFixoPlace" title="Register a new place">+</a>
+          </div>
        
 
               {/*<span>{this.state.categorias.get('1')}</span>*/}

@@ -48,7 +48,9 @@ export default class Category extends Component {
 
                       <br/>
 
-                      <button onClick={this.addCategory} type="submit" class="btn btn-danger">Register</button>                  
+                      <a type="text" href="/map" class="btn btn-secondary btnReturn">Return</a>
+                      &emsp;
+                      <button onClick={this.addCategory} type="submit" class="btn btn-info">Register</button>                  
                 </div>
             </div>
           </div>

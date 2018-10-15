@@ -123,15 +123,53 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
   border: 10px;
 }
 
-.btnFixo{
-  font-size: 50px;
+.btnFixoCategory{
+  font-size: 65px;
   position: fixed;
   float: bottom;
-  bottom: 10%;
+  bottom: 3%;
   right: 2%;
   z-index: 100;
 }
 
-a.btnFixo:link{
+a.btnFixoCategory:link{
   text-decoration:none; 
+}
+
+.labelFixoCategory{
+  font-size: 20px;
+  position: fixed;
+  float: bottom;
+  bottom: 11%;
+  right: 2%;
+  z-index: 100;  
+  color: blue;
+}
+
+.btnFixoPlace{
+  font-size: 65px;
+  position: fixed;
+  float: bottom;
+  bottom: 14%;
+  right: 2%;
+  z-index: 100;
+  color: red;
+}
+
+a.btnFixoPlace:link{
+  text-decoration: none;
+}
+
+a.btnFixoPlace:hover{
+  color: rgb(188,0,0);
+}
+
+.labelFixoPlace{
+  font-size: 20px;
+  position: fixed;
+  float: bottom;
+  bottom: 22%;
+  right: 2%;
+  z-index: 100;
+  color: red;
 }

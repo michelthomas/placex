@@ -44,12 +44,13 @@ export default class Places extends Component {
                       className="form-control form-control-lg"
                       value={this.state.categoryName}
                       type="text"
-                      placeholder="Category Name"
+                      placeholder="Place"
                       onChange={this.upgradeCategory} />
 
                       <br/>
-
-                      <button onClick={this.addPlace} type="submit" class="btn btn-danger">Register</button>                  
+                      <a type="text" href="/map" class="btn btn-secondary btnReturn">Return</a>
+                      &emsp;
+                      <button onClick={this.addPlace} type="submit" class="btn btn-info">Register</button>                  
                 </div>
             </div>
           </div>

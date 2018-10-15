@@ -74,11 +74,11 @@ export default class Home extends Component {
                       <br/>
 
                         <div class="btn-group">
-                            <button onClick={this.addPlace} type="submit" class="btn btn-primary" disabled>Cadastrar local</button>
+                            <button onClick={this.addPlace} type="submit" class="btn btn-info" disabled>Register a place</button>
                                 &ensp;
-                            <button onClick={this.listPlaces} type="submit" class="btn btn-primary">Listar Locais</button>
+                            <button onClick={this.listPlaces} type="submit" class="btn btn-info">List places</button>
                                 &ensp;
-                            <button onClick={this.logout} type="submit" class="btn btn-primary">Sair</button>
+                            <button onClick={this.logout} type="submit" class="btn btn-info">Logout</button>
                         </div>
                     </div>
                 </div>
