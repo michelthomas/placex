@@ -25,10 +25,18 @@ export default class Map extends Component {
             modalp: false,
             modalc: false,
             placeName: [],
+            placePrice: [],
+            placeHours: [],
+            placeLat: [],
+            placeLong: [],
             categoryName: [],            
         };
 
         this.upgradePlace = this.upgradePlace.bind(this);
+        this.upgradePlacePrice = this.upgradePlacePrice.bind(this);
+        this.upgradePlaceHours = this.upgradePlaceHours.bind(this);
+        this.upgradePlaceLat = this.upgradePlaceLat.bind(this);
+        this.upgradePlaceLong = this.upgradePlaceLong.bind(this);
         this.upgradeCategory = this.upgradeCategory.bind(this);
         this.togglep = this.togglep.bind(this);
         this.togglec = this.togglec.bind(this);
@@ -39,9 +47,29 @@ export default class Map extends Component {
       this.setState({placeName: event.target.value});
     }
 
+    upgradePlacePrice(event){
+      this.setState({placePrice: event.target.value});
+    }
+
+    upgradePlaceHours(event){
+      this.setState({placeHours: event.target.value});
+    }
+
+    upgradePlaceLat(event){
+      this.setState({placeLat: event.target.value});
+    }
+
+    upgradePlaceLong(event){
+      this.setState({placeLong: event.target.value});
+    }
+
     addPlace  = ev =>  {
         const category = {
-            tipo: this.state.placeName,
+            description: this.state.placeName,
+            price: this.state.placePrice,
+            openHours: this.state.placeHours,
+            lat: this.state.placeLat,
+            long: this.state.placeLong,           
         };
 
         const db = firebase.firestore();
@@ -267,8 +295,44 @@ export default class Map extends Component {
                   className="form-control form-control-lg"
                   value={this.state.placeName}
                   type="text"
-                  placeholder="Place"
-                  onChange={this.upgradePlace} />          
+                  placeholder="Place name"
+                  onChange={this.upgradePlace} />
+
+                <br/>
+
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placePrice}
+                  type="text"
+                  placeholder="Place price"
+                  onChange={this.upgradePlacePrice} /> 
+
+                <br/>
+
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placeHours}
+                  type="text"
+                  placeholder="Place hours"
+                  onChange={this.upgradePlaceHours} /> 
+
+                <br/>
+
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placeLat}
+                  type="text"
+                  placeholder="Place lat"
+                  onChange={this.upgradePlaceLat} />
+
+                <br/>
+
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placeLong}
+                  type="text"
+                  placeholder="Place long"
+                  onChange={this.upgradePlaceLong} /> 
               </ModalBody>
               <ModalFooter>
                 <button class="btn btn-info">Cancel</button>          
@@ -283,7 +347,7 @@ export default class Map extends Component {
                   className="form-control form-control-lg"
                   value={this.state.categoryName}
                   type="text"
-                  placeholder="Category"
+                  placeholder="Category name"
                   onChange={this.upgradeCategory} />          
               </ModalBody>
               <ModalFooter>
