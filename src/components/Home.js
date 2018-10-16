@@ -59,14 +59,13 @@ export default class Home extends Component {
         return (
           <div>
           <AppBar position="static" color="inherit">
-          <IconButton color="inherit" aria-label="Menu">
-          <MenuIcon />
-          </IconButton>
-          <Toolbar>
-              <Button color="inherit" onClick={this.addPlace} type="submit">Register a place</Button>
-              <Button color="inherit" onClick={this.listPlaces} type="submit">List places</Button>
-              <Button color="inherit" onClick={this.logout} type="submit">Logout</Button>
-          </Toolbar>
+            <Toolbar>
+                <Button color="inherit" onClick={this.addPlace} type="submit">Register a place</Button>
+                <Button color="inherit" href="/category" type="text">New Category</Button>
+                <Button color="inherit" href="/places" type="text">New Place</Button>
+                <Button color="inherit" /*onClick={this.listPlaces}*/ href="/map" type="submit">List places</Button>
+                <Button color="inherit" onClick={this.logout} type="submit">Logout</Button>
+            </Toolbar>
           </AppBar>
           </div>
         );
