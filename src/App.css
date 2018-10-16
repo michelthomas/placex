@@ -28,9 +28,6 @@
 }
 
 
-
-body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-481285.jpg"); background-repeat:no-repeat; background-position:center;}
-
 .form-heading { color:#fff; font-size:23px;}
 .panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
 .panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
@@ -121,55 +118,4 @@ body{ background-image:url("https://images6.alphacoders.com/481/thumb-1920-48128
 
 .box{
   border: 10px;
-}
-
-.btnFixoCategory{
-  font-size: 65px;
-  position: fixed;
-  float: bottom;
-  bottom: 3%;
-  right: 2%;
-  z-index: 100;
-}
-
-a.btnFixoCategory:link{
-  text-decoration:none; 
-}
-
-.labelFixoCategory{
-  font-size: 20px;
-  position: fixed;
-  float: bottom;
-  bottom: 11%;
-  right: 2%;
-  z-index: 100;  
-  color: blue;
-}
-
-.btnFixoPlace{
-  font-size: 65px;
-  position: fixed;
-  float: bottom;
-  bottom: 14%;
-  right: 2%;
-  z-index: 100;
-  color: red;
-}
-
-a.btnFixoPlace:link{
-  text-decoration: none;
-}
-
-a.btnFixoPlace:hover{
-  color: rgb(188,0,0);
-}
-
-.labelFixoPlace{
-  font-size: 20px;
-  position: fixed;
-  float: bottom;
-  bottom: 22%;
-  right: 2%;
-  z-index: 100;
-  color: red;
 }

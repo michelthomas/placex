@@ -3,9 +3,14 @@ import GoogleMapReact from 'google-map-react';
 //import Image from 'react';
 import marker from '../assets/baseline_place_black_18dp.png';
 import firebase from 'firebase';
+import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-//import bootstrap
-import { Button } from 'reactstrap';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 //import navbar home
 import Home from './Home';
@@ -17,9 +22,96 @@ export default class Map extends Component {
             places: [],
             categorias: [],
             checkSelecionados:[],
-        }
+            modalp: false,
+            modalc: false,
+            placeName: [],
+            categoryName: [],            
+        };
+
+        this.upgradePlace = this.upgradePlace.bind(this);
+        this.upgradeCategory = this.upgradeCategory.bind(this);
+        this.togglep = this.togglep.bind(this);
+        this.togglec = this.togglec.bind(this);
+        this.logout = this.logout.bind(this);       
     }
 
+    upgradePlace(event){
+      this.setState({placeName: event.target.value});
+    }
+
+    addPlace  = ev =>  {
+        const category = {
+            tipo: this.state.placeName,
+        };
+
+        const db = firebase.firestore();
+        const userRef = db.collection('Places').add(category)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }
+
+    upgradeCategory(event){
+        this.setState({categoryName: event.target.value});
+    }
+
+    addCategory  = ev =>  {
+        const category = {
+            tipo: this.state.categoryName,
+        };
+
+        const db = firebase.firestore();
+        const userRef = db.collection('Category').add(category)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }    
+
+    togglep() {
+      this.setState({
+        modalp: !this.state.modalp
+     });
+    }
+
+    togglec() {
+      this.setState({
+        modalc: !this.state.modalc
+     });
+    }
+
+    logout() {
+        firebase.auth().signOut();
+        this.props.history.push('/');
+    }
+
+    addPlace() {
+        const place = {
+            description: 'Parque Munincipal',
+            price: 'gratuito',
+            openHours: '08:00 - 18:00',
+            likes: 624
+        };
+
+        const db = firebase.firestore();
+        db.settings({
+            timestampsInSnapshots: true
+        });
+        const userRef = db.collection('Places').add(place)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }
+
+    listPlaces() {
+        var ref = firebase.database().ref('places');
+
+        ref.once('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                console.log(childSnapshot.val());
+            })
+        });
+
+    }
 
     componentDidMount() {
         const db = firebase.firestore();
@@ -94,8 +186,18 @@ export default class Map extends Component {
         // };
         return (
           <div className='box'>
+
           <div className='edition '>
-            <h5 class="card-header">PlacEx Map</h5>
+            <AppBar position="static" color="inherit">
+              <Toolbar>
+                <Button color="inherit" onClick={this.addPlace} type="submit">Register a place</Button>
+                <Button color="inherit" onClick={this.togglec} type="text">New Category</Button>
+                <Button color="inherit" onClick={this.togglep} type="text">New Place</Button>
+                <Button color="inherit" /*onClick={this.listPlaces}*/ href="/map" type="submit">List places</Button>
+                <Button color="inherit" onClick={this.logout} type="submit">Logout</Button>
+              </Toolbar>
+            </AppBar>
+
             <br/>
 
             <div>
@@ -114,14 +216,6 @@ export default class Map extends Component {
           )}
             </div>
           </div>
-
-          <div class="btn-group">
-            <label class="labelFixoCategory">C</label>
-                <a type="text" href="/category" class="btnFixoCategory" title="Register a new category">+</a>
-            <label class="labelFixoPlace">P</label>
-                <a type="text" href="/places" class="btnFixoPlace" title="Register a new place">+</a>
-          </div>
-
 
               {/*<span>{this.state.categorias.get('1')}</span>*/}
             <div className='google-map'>
@@ -165,6 +259,38 @@ export default class Map extends Component {
 
                 </GoogleMapReact>
             </div>
+
+            <Modal isOpen={this.state.modalp} toggle={this.togglep} className={this.props.className}> {/*Modal de cadastrar lugares*/}
+              <ModalHeader toggle={this.togglep}>Register a place</ModalHeader>
+              <ModalBody>
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placeName}
+                  type="text"
+                  placeholder="Place"
+                  onChange={this.upgradePlace} />          
+              </ModalBody>
+              <ModalFooter>
+                <button class="btn btn-info">Cancel</button>          
+                <button onClick={this.addPlace} type="submit" class="btn btn-info">Register</button>
+              </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={this.state.modalc} toggle={this.togglec} className={this.props.className}> {/*Modal de cadastrar categorias*/}
+              <ModalHeader toggle={this.togglec}>Register a category</ModalHeader>
+              <ModalBody>
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.categoryName}
+                  type="text"
+                  placeholder="Category"
+                  onChange={this.upgradeCategory} />          
+              </ModalBody>
+              <ModalFooter>
+                <button class="btn btn-info">Cancel</button>          
+                <button onClick={this.addCategory} type="submit" class="btn btn-info">Register</button>
+              </ModalFooter>
+            </Modal>            
         </div>
         );
     }

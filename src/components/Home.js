@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
+import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,12 +14,67 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+          modalp: false,
+          modalc: false,
+          placeName: [],
+          categoryName: [],
+        };
+
+        this.upgradePlace = this.upgradePlace.bind(this);
+        this.upgradeCategory = this.upgradeCategory.bind(this);
+        this.togglep = this.togglep.bind(this);
+        this.togglec = this.togglec.bind(this);
         this.logout = this.logout.bind(this);
 
         const currentUser = firebase.auth().currentUser;
         if (!currentUser) {
             this.props.history.push('/');
         }
+    }
+
+    upgradePlace(event){
+      this.setState({placeName: event.target.value});
+    }
+
+    addPlace  = ev =>  {
+        const category = {
+            tipo: this.state.placeName,
+        };
+
+        const db = firebase.firestore();
+        const userRef = db.collection('Places').add(category)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }
+
+    upgradeCategory(event){
+        this.setState({categoryName: event.target.value});
+    }
+
+    addCategory  = ev =>  {
+        const category = {
+            tipo: this.state.categoryName,
+        };
+
+        const db = firebase.firestore();
+        const userRef = db.collection('Category').add(category)
+            .then(sucesso => {
+                console.log('Dados inseridos: ' + sucesso);
+            });
+    }    
+
+    togglep() {
+      this.setState({
+        modalp: !this.state.modalp
+     });
+    }
+
+    togglec() {
+      this.setState({
+        modalc: !this.state.modalc
+     });
     }
 
     logout() {
@@ -58,15 +114,47 @@ export default class Home extends Component {
     render() {
         return (
           <div>
-          <AppBar position="static" color="inherit">
-            <Toolbar>
+            <AppBar position="static" color="default">
+              <Toolbar>
                 <Button color="inherit" onClick={this.addPlace} type="submit">Register a place</Button>
-                <Button color="inherit" href="/category" type="text">New Category</Button>
-                <Button color="inherit" href="/places" type="text">New Place</Button>
-                <Button color="inherit" /*onClick={this.listPlaces}*/ href="/map" type="submit">List places</Button>
+                <Button color="inherit" onClick={this.togglec} type="text">New Category</Button>
+                <Button color="inherit" onClick={this.togglep} type="text">New Place</Button>
+                <Button color="inherit" href="/map" type="text">List places</Button>
                 <Button color="inherit" onClick={this.logout} type="submit">Logout</Button>
-            </Toolbar>
-          </AppBar>
+              </Toolbar>
+            </AppBar>
+
+            <Modal isOpen={this.state.modalp} toggle={this.togglep} className={this.props.className}> {/*Modal de cadastrar lugares*/}
+              <ModalHeader toggle={this.togglep}>Modal title</ModalHeader>
+              <ModalBody>
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.placeName}
+                  type="text"
+                  placeholder="Place"
+                  onChange={this.upgradePlace} />          
+              </ModalBody>
+              <ModalFooter>
+                <button class="btn btn-info">Cancel</button>          
+                <button onClick={this.addPlace} type="submit" class="btn btn-info">Register</button>
+              </ModalFooter>
+            </Modal>
+
+            <Modal isOpen={this.state.modalc} toggle={this.togglec} className={this.props.className}> {/*Modal de cadastrar categorias*/}
+              <ModalHeader toggle={this.togglec}>Modal title</ModalHeader>
+              <ModalBody>
+                <input
+                  className="form-control form-control-lg"
+                  value={this.state.categoryName}
+                  type="text"
+                  placeholder="Category"
+                  onChange={this.upgradeCategory} />          
+              </ModalBody>
+              <ModalFooter>
+                <button class="btn btn-info">Cancel</button>          
+                <button onClick={this.addCategory} type="submit" class="btn btn-info">Register</button>
+              </ModalFooter>
+            </Modal>                  
           </div>
         );
     }
