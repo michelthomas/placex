@@ -263,8 +263,6 @@ export default class Map extends Component {
                                         <AnyReactComponent
                                             lat={place.lat}
                                             lng={place.long}
-                                            onChildClick={place.nome}
-                                            hover={place.nome}
                                             title={place.nome}
                                         />
                                     )
@@ -325,7 +323,7 @@ export default class Map extends Component {
                             placeholder="Place long"
                             onChange={this.upgradePlaceLong}/>
                     </ModalBody>
-                    <select onChange={(e) => this.setState({ value: e.target.value })}>
+                    <select onChange={(e) => this.setState({ placeCategory: e.target.value })}>
                         <option>Selecione a categoria</option>
                         {this.state.categorias.map((cat, i) => {
                                 return (
