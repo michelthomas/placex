@@ -59,11 +59,11 @@ export default class Map extends Component {
     }
 
     upgradePlaceLat(event) {
-        this.setState({placeLat: event.target.value});
+        this.setState({placeLat: parseFloat(event.target.value)});
     }
 
     upgradePlaceLong(event) {
-        this.setState({placeLong: event.target.value});
+        this.setState({placeLong: parseFloat(event.target.value)});
     }
 
     // upgradePlaceCategory(event) {
