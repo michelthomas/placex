@@ -46,7 +46,7 @@ export default class Login extends Component {
       this.state.senha
     )
     .then(sucesso => {
-      this.props.history.push('/home');
+      this.props.history.push('/map');
     })
     .catch(erro => {
       alert(erro);

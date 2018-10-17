@@ -29,8 +29,8 @@ export default class Map extends Component {
             placeName: [],
             placePrice: [],
             placeHours: [],
-            placeLat: [],
-            placeLong: [],
+            placeLat: "",
+            placeLong: "",
             placeCategory: [],
             categoryName: [],
         };
@@ -172,6 +172,7 @@ export default class Map extends Component {
                     const {tipo} = doc.data();
 
                     categorias.push({
+                        id: doc.id,
                         tipo: tipo,
                         check: true
                     });
@@ -192,7 +193,16 @@ export default class Map extends Component {
 
     _handleInputChange = event => {
         const id = event.target.id;
-        console.log(id);
+        const categorias  = this.state.categorias.map(categoria => {
+            if(categoria.id === id){
+                categoria.check = !categoria.check;
+            }
+            return categoria;
+        });
+        this.setState({
+          categorias: categorias,
+        });
+       // console.log(id);
     };
 
     static defaultProps = {
@@ -221,10 +231,10 @@ export default class Map extends Component {
                     <div>
                         {this.state.categorias.map((cat, i) => {
                                 return (
-                                    <div>
+                                    <div key={i}>
                                         &ensp;
                                         <label>
-                                            <input type='checkbox' defaultChecked={true} name={cat.tipo} id={i}
+                                            <input type='checkbox' defaultChecked={true} name={cat.tipo} id={cat.id} key={i}
                                                    onChange={this._handleInputChange}/>
                                             {cat.tipo}
                                         </label>
@@ -251,19 +261,21 @@ export default class Map extends Component {
 
                                 this.state.categorias.map((categoria, j) => {
                                     console.log(place.categoria + ' ... ' + categoria.tipo + '...' + categoria.check);
-                                    if ((place.categoria == categoria.tipo) && categoria.check == true) {
+                                    if ((place.categoria === categoria.id) && categoria.check === true) {
                                         passar = 1;
                                         console.log('pass')
                                     }
                                 });
 
-                                if (passar == 1) {
+                                if (passar === 1) {
                                     return (
 
-                                        <AnyReactComponent
+                                        <Place
+                                            key={i}
                                             lat={place.lat}
                                             lng={place.long}
                                             title={place.nome}
+                                            onClick={this._handleInputChange}
                                         />
                                     )
                                 } else {
@@ -327,7 +339,7 @@ export default class Map extends Component {
                         <option>Selecione a categoria</option>
                         {this.state.categorias.map((cat, i) => {
                                 return (
-                                    <option value={cat.tipo} >{cat.tipo}</option>
+                                    <option key={i} value={cat.id} >{cat.tipo}</option>
                                 )
                             }
                         )
@@ -357,4 +369,4 @@ export default class Map extends Component {
         );
     }
 }
-const AnyReactComponent = ({text}) => <div><img src={marker}/></div>;
+const Place = ({text}) => <div><img src={marker}/></div>;
