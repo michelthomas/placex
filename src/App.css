@@ -119,3 +119,12 @@
 .box{
   border: 10px;
 }
+
+body{
+    background: url("assets/wallpaper.jpg") no-repeat center top fixed;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+}
